@@ -31,23 +31,18 @@ struct Hat {
 // impl Colorful for Hat ...
 impl Colorful for Hat {
     fn color(&self) -> String {
-        if self.size >= 0 && self.size <= 5 {
-            "red".to_string()
-        } else if self.size == 6 || self.size == 7 {
-            "green".to_string()
-        } else {
-            "blue".to_string()
+        match self.size {
+            0..=5 => "red",
+            6 | 7 => "green",
+            _ => "blue",
         }
+        .to_string()
     }
 }
 
 impl Colorful for i32 {
     fn color(&self) -> String {
-        if self.is_even() {
-            "orange".to_string()
-        } else {
-            "purple".to_string()
-        }
+        if self.is_even() { "orange" } else { "purple" }.to_string()
     }
 }
 
